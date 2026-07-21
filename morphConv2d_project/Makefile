@@ -28,7 +28,17 @@ LIBS ::= \
 
 NVCCFLAGS ::= \
 -O3 \
--DTORCH_EXTENSION_NAME=conv2d_cuda_original \
+-DTORCH_EXTENSION_NAME=conv2d_cuda \
+-DTORCH_API_INCLUDE_EXTENSION_H \
+-D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ \
+--expt-relaxed-constexpr \
+-gencode=arch=compute_75,code=compute_75 -gencode=arch=compute_75,code=sm_75 \
+--compiler-options '-fPIC' \
+-std=c++17 \
+
+NVCCFLAGS_thorough ::= \
+-O3 \
+-DTORCH_EXTENSION_NAME=conv2d_cuda_thorough \
 -DTORCH_API_INCLUDE_EXTENSION_H \
 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ \
 --expt-relaxed-constexpr \
@@ -78,7 +88,7 @@ $(BUILD_DIR)/conv2d_thorough.so: $(SRC_DIR)/conv2d_thorough.cuda.o
 	$(GXX) $(SRC_DIR)/conv2d_thorough.cuda.o -shared $(LIBPATHS) $(LIBS) -o $(BUILD_DIR)/conv2d_thorough.so
 
 $(SRC_DIR)/conv2d_thorough.cuda.o: $(SRC_DIR)/conv2d_thorough.cu
-	$(NVCC) $(NVCCFLAGS) $(INCLUDE) -c $(SRC_DIR)/conv2d_thorough.cu -o $(SRC_DIR)/conv2d_thorough.cuda.o 
+	$(NVCC) $(NVCCFLAGS_thorough) $(INCLUDE) -c $(SRC_DIR)/conv2d_thorough.cu -o $(SRC_DIR)/conv2d_thorough.cuda.o 
 
 ## JIT compilation instructions which were used to develop this Makefile. 
 
