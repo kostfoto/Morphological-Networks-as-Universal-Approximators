@@ -92,11 +92,9 @@ Run the experiments by executing all cells of the provided netbooks top to botto
 | Paper result | File |
 |---|---|
 | Table 1 | `mainMNNs*.ipynb` |
-| Table 2 | `mainMNNs*.ipynb` |
-| Table 3 | `mainMNNs*.ipynb`<br>`resnet_20_experiments*.ipynb` |
-| Table 4 | `resnet_20_experiments*.ipynb` |
-| Table 5 | `snip_experiments_corrected*.ipynb` |
-| Table 6 | `snip_resnet_experiments_corrected*.ipynb` |
+| Table 2 | `mainMNNs*.ipynb`<br>`resnet_20_experiments*.ipynb` |
+| Table 3 | `snip_experiments_corrected*.ipynb` <br> `snip_resnet_experiments_corrected*.ipynb` |
+| Table 4 <br> Figure 5 | `mainMNNs*.ipynb` |
 
 ---
 
